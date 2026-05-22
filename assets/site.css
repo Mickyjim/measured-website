@@ -568,6 +568,34 @@ a {
   font-weight: 900;
 }
 
+.plan-price {
+  margin: 8px 0 4px;
+  color: var(--ink);
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.plan-price span {
+  color: var(--muted);
+  font-size: 16px;
+  letter-spacing: 0;
+}
+
+.plan-price-note {
+  margin-bottom: 16px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.plan-card.featured .plan-price,
+.plan-card.featured .plan-price span,
+.plan-card.featured .plan-price-note {
+  color: rgba(255, 255, 255, 0.9);
+}
+
 .plan-card ul {
   display: grid;
   gap: 9px;
