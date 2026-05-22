@@ -19,6 +19,7 @@
         <a href="index.html#how">How it works</a>
         <a href="index.html#examples">Examples</a>
         <a href="privacy.html">Privacy</a>
+        <a href="#contact">Contact</a>
       </nav>
     </header>
 
@@ -30,11 +31,46 @@
       </section>
 
       <div class="page-content">
-        <article class="page-card notice">
-          <h2>Contact</h2>
-          <p>For TestFlight builds, send support requests through TestFlight feedback and include "ClearTone support" in the message.</p>
-          <p>For App Store builds, use this public Support URL from the App Store listing for support scope, troubleshooting steps, subscriptions, account deletion, privacy questions, and safety boundaries.</p>
-          <p>Do not include raw private chats, full WhatsApp exports, passwords, bearer tokens, or payment details in support messages.</p>
+        <article id="contact" class="page-card notice contact-card">
+          <h2>Contact ClearTone</h2>
+          <p>Use this form for app support, privacy or deletion requests, subscription questions, WhatsApp import issues, accessibility feedback, and general inquiries.</p>
+          <p>For TestFlight builds, send support requests through TestFlight feedback when possible and include "ClearTone support" in the message.</p>
+          <p>For App Store builds, use this public Support URL or the email contact below for support scope, troubleshooting steps, subscriptions, account deletion, privacy questions, and safety boundaries.</p>
+          <p>This zero-cost form opens your email app with a message addressed to <a href="mailto:contact-cleartone@gmail.com">contact-cleartone@gmail.com</a>. The website does not store form submissions.</p>
+          <form class="contact-form" action="mailto:contact-cleartone@gmail.com" method="post" enctype="text/plain" data-contact-form data-contact-email="contact-cleartone@gmail.com">
+            <div class="form-grid">
+              <label>
+                Topic
+                <select name="topic" required>
+                  <option value="App support">App support</option>
+                  <option value="Privacy request">Privacy request</option>
+                  <option value="Deletion request">Deletion request</option>
+                  <option value="Subscription or purchase">Subscription or purchase</option>
+                  <option value="WhatsApp import">WhatsApp import</option>
+                  <option value="Prospect or partnership inquiry">Prospect or partnership inquiry</option>
+                  <option value="Other question">Other question</option>
+                </select>
+              </label>
+              <label>
+                Your email
+                <input name="replyEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
+              </label>
+            </div>
+            <label>
+              Subject
+              <input name="subject" type="text" maxlength="120" placeholder="Short summary" required>
+            </label>
+            <label>
+              Message
+              <textarea name="message" rows="7" maxlength="3000" placeholder="Tell us what happened and what you need help with." required></textarea>
+            </label>
+            <p class="form-note">Do not include raw private chats, full WhatsApp exports, passwords, bearer tokens, payment details, or emergency information.</p>
+            <div class="form-actions">
+              <button class="button primary" type="submit">Prepare email</button>
+              <a class="button secondary" href="mailto:contact-cleartone@gmail.com?subject=ClearTone%20support">Email directly</a>
+            </div>
+            <p class="contact-status" data-contact-status aria-live="polite"></p>
+          </form>
         </article>
 
         <article class="page-card">
