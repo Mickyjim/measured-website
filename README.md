@@ -1,6 +1,6 @@
-# ClearTone Website
+# Measured Website
 
-Public static website for ClearTone.
+Public static website for Measured.
 
 This repository intentionally contains only public website files:
 
@@ -10,4 +10,4 @@ This repository intentionally contains only public website files:
 - `assets/site.css`
 - `assets/site.js`
 
-The private ClearTone app and backend source code stay in the private app repository.
+The private Measured app and backend source code stay in the private app repository.

@@ -34,7 +34,7 @@ document.querySelectorAll("[data-contact-form]").forEach(form => {
     const subject = String(data.get("subject") || "").trim();
     const message = String(data.get("message") || "").trim();
 
-    const emailSubject = `[ClearTone] ${topic}: ${subject || "Website contact"}`;
+    const emailSubject = `[Measured] ${topic}: ${subject || "Website contact"}`;
     const emailBody = [
       `Topic: ${topic}`,
       `Reply email: ${replyEmail || "Not provided"}`,
@@ -43,7 +43,7 @@ document.querySelectorAll("[data-contact-form]").forEach(form => {
       message,
       "",
       "--",
-      "Sent from the ClearTone public website contact form."
+      "Sent from the Measured public website contact form."
     ].join("\n");
 
     window.location.href = `mailto:${destination}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
