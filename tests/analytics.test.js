@@ -60,6 +60,7 @@ test('Umami event payload contains only the explicit privacy allowlist', () => {
   scripts[0].onload();
   assert.equal(sent.length, 1);
   assert.equal(sent[0].website, website);
+  assert.equal(sent[0].hostname, 'mickyjim.github.io');
   assert.equal(sent[0].url, '/measured-website/');
   assert.equal(sent[0].name, 'demo_completed');
   assert.equal(sent[0].data.intent, 'professional');
@@ -82,9 +83,22 @@ test('all four funnel events use the configured Website ID', () => {
   for (const name of ['demo_completed', 'app_store_clicked']) {
     window.MeasuredAnalytics.track({ name, page: 'index.html' });
   }
-  assert.deepEqual(sent.map(event => event.name),
-    ['landing_view', 'demo_started', 'demo_completed', 'app_store_clicked']);
+  assert.deepEqual(sent.map(event => event.name || 'pageview'),
+    ['pageview', 'landing_view', 'demo_started', 'demo_completed', 'app_store_clicked']);
   assert.equal(sent.every(event => event.website === website), true);
+  assert.equal(sent[0].url, '/measured-website/');
+  assert.equal(Object.hasOwn(sent[0], 'data'), false);
+  assert.equal(Object.hasOwn(sent[0], 'name'), false);
+  const secret = 'PRIVATE_MESSAGE_SENTINEL_7941';
+  const event = { name: 'landing_view', page: 'reply-to-an-ex/',
+    utm_source: 'reddit', referrer: `https://example.test/?message=${secret}`,
+    rawURL: `/?message=${secret}`, message: secret };
+  window.MeasuredAnalytics.track(event);
+  const pageviews = sent.filter(payload => !payload.name);
+  assert.equal(pageviews.length, 1);
+  assert.equal(pageviews[0].url, '/measured-website/');
+  assert.equal(JSON.stringify(sent).includes(secret), false);
+  assert.equal(JSON.stringify(pageviews[0]).includes('utm_'), false);
 });
 
 test('demo never writes, logs or sends the pasted message', () => {

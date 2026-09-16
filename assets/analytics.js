@@ -10,6 +10,12 @@
     /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(website);
   const pending = [];
   let ready = false;
+  let pageviewSent = false;
+
+  function enqueue(payload) {
+    if (ready && window.umami?.track) window.umami.track(payload);
+    else if (pending.length < 20) pending.push(payload);
+  }
 
   function send(event) {
     if (!enabled || !allowedEvents.has(event?.name)) return;
@@ -22,14 +28,18 @@
     }
     const page = /^(index\.html|(?:what-should-i-text-back|reply-to-an-ex|reply-to-a-passive-aggressive-text|set-a-boundary-over-text|reply-to-a-rude-coworker)\/)$/.test(event.page)
       ? event.page : "other";
-    const payload = {
+    const base = {
       website,
-      url: "/measured-website/" + (page === "index.html" ? "" : page),
-      name: event.name,
-      data
+      hostname: location.hostname,
+      url: "/measured-website/" + (page === "index.html" ? "" : page)
     };
-    if (ready && window.umami?.track) window.umami.track(payload);
-    else if (pending.length < 20) pending.push(payload);
+    // Umami's Visitors metric requires a pageview, not merely a named event.
+    // Send one sanitized pageview with no query string on each landing load.
+    if (event.name === "landing_view" && !pageviewSent) {
+      pageviewSent = true;
+      enqueue(base);
+    }
+    enqueue({ ...base, name: event.name, data });
   }
 
   window.MeasuredAnalytics = Object.freeze({ track: send, enabled });
