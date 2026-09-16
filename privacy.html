@@ -37,6 +37,13 @@
           <p>Measured is communication coaching support. It is not therapy, legal advice, medical advice, mental-health treatment, emergency support, or crisis support.</p>
         </article>
 
+        <article id="website-demo" class="page-card">
+          <h2>Website demo and measurement</h2>
+          <p>The website demo runs fixed sample logic in your browser. Text pasted into it is used only to select a sample response on that page. It is not sent to Measured, an AI provider, or an analytics service, and is not saved in browser storage. You can clear it with the Clear message button.</p>
+          <p>The website counts page views, demo starts, demo completions, and App Store clicks in local browser storage. It keeps only aggregate counts and counts by selected goal. When sitewide analytics is configured, the website also sends these event names to Umami Cloud with the page path, selected goal, CTA position, and validated campaign tags. It does not put the pasted message, raw query string, or referrer URL in analytics events. Umami uses no tracking cookies. When sitewide analytics is not configured, only browser-local counters are recorded. Browser storage may be cleared through your browser settings.</p>
+          <p>App Store links carry Apple's public provider and campaign identifiers. Website UTM tags are used for the site's own aggregate measurement and are not appended to App Store links.</p>
+        </article>
+
         <article class="page-card">
           <h2>Data Measured Handles</h2>
           <p>Depending on how you use the app, Measured may handle message drafts, generated reply options, coaching guidance, saved local history, preferred replies, relationship briefs, account information, hosted AI usage, and subscription status connected to App Store purchases.</p>
@@ -53,7 +60,7 @@
           <p>Measured supports manual import of text-only WhatsApp exports. Measured does not connect to WhatsApp directly and does not read your WhatsApp account.</p>
           <p>Before opening the file picker, Measured asks for explicit permission to read the export you choose. When you import a supported text export, Measured processes the text locally and creates a compact relationship brief. The selected export is not uploaded, and the full raw chat is not stored.</p>
           <p>The compact digest may include participant names, message counts, first and last message dates, detected communication signals, strategic summaries, and selected short excerpts used to explain the pattern.</p>
-          <p>Voice notes, images, videos, stickers, and other media files are not analyzed in this release.</p>
+          <p>The text-only WhatsApp import does not analyze voice notes, images, videos, stickers, or other media from the export.</p>
         </article>
 
         <article class="page-card">

@@ -3,14 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Measured - Conflict Reply Coach</title>
-  <meta name="description" content="Measured helps you understand difficult messages, spot pressure patterns, and write calmer replies before you send.">
-  <meta property="og:title" content="Measured - Conflict Reply Coach">
-  <meta property="og:description" content="Turn messy messages into calm, strategic replies.">
+  <title>What Should I Reply to This? | Measured: Reply Coach</title>
+  <meta name="description" content="Paste a difficult message, choose your goal and explore calm replies. Try Measured's free sample demo for conflict, boundaries, family and work.">
+  <link rel="canonical" href="https://mickyjim.github.io/measured-website/">
+  <meta property="og:title" content="What Should I Reply to This? | Measured">
+  <meta property="og:description" content="A calmer way to answer difficult messages. Try a free sample demo, then open Measured on iPhone.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mickyjim.github.io/measured-website/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What Should I Reply to This? | Measured">
+  <meta name="twitter:description" content="Practise a calm reply to a difficult message with a free sample demo.">
   <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="assets/acquisition.css">
+  <script src="assets/site-config.js?v=experiment-1-apple" defer></script>
+  <script src="assets/analytics.js" defer></script>
+  <script src="assets/funnel.js?v=experiment-1-apple" defer></script>
 </head>
-<body>
+<body class="acquisition">
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="page-shell">
     <header class="site-header">
@@ -24,7 +33,7 @@
         <a href="articles/index.html">Articles</a>
         <a href="privacy.html">Privacy</a>
         <a href="support.html#contact">Contact</a>
-        <a class="nav-cta" href="#plans">Plans</a>
+        <a class="nav-cta" href="#demo">Try the demo</a>
       </nav>
     </header>
 
@@ -32,12 +41,14 @@
       <section class="hero">
         <div class="reveal is-visible">
           <div class="eyebrow">Conflict coaching before you reply</div>
-          <h1>Turn messy messages into <span class="grad-text">calm, strategic replies.</span></h1>
-          <p class="lead">Measured helps you understand what is really happening in a difficult conversation, avoid the emotional trap, and answer like your future self is watching.</p>
+          <h1>What should I <span class="grad-text">reply to this?</span></h1>
+          <p class="lead">Paste a difficult message, decide what you want to achieve, and let Measured help you respond calmly without backing down.</p>
           <div class="hero-actions">
-            <a class="button primary" href="https://apps.apple.com/app/id6776645651">Download on the App Store</a>
-            <a class="button" href="#how">See how it works</a>
+            <a class="button primary" data-app-store data-placement="top" href="https://apps.apple.com/app/apple-store/id6776645651?pt=121386003&amp;ct=measured_web_01&amp;mt=8">Try Measured</a>
+            <a class="button" href="#demo">Try the website demo</a>
           </div>
+          <p class="supporting">For arguments, exes, family, co-parenting, work pressure, boundaries and messages you don’t want to answer impulsively.</p>
+          <p class="small-note">Paste the message. Decide what you want to achieve. Get a calm reply that sounds like you.</p>
           <div class="trust-line">
             <span>Private by design</span>
             <span>On-device analysis</span>
@@ -45,24 +56,39 @@
           </div>
         </div>
 
-        <div class="phone reveal is-visible" aria-label="Auto-playing example of Measured coaching a reply">
-          <div class="phone-screen" data-demo>
-            <div class="app-top"><span>Measured</span><span class="demo-live"><i></i>Live preview</span></div>
-            <div class="demo-thread">
-              <div class="bubble incoming demo-step" data-step="incoming">You always make everything about yourself. I guess I just won't tell you anything anymore.</div>
-              <div class="reading-chip demo-step" data-step="reading"><span class="dots"><i></i><i></i><i></i></span>Measured is reading the pattern…</div>
-              <div class="coach-card demo-step" data-step="card1">
-                <div class="label">What's happening</div>
-                <h3>Guilt hook + shutdown threat</h3>
-                <p>They're pushing you to defend yourself fast. Over-explaining hands them the conversation.</p>
-              </div>
-              <div class="coach-card demo-step" data-step="card2">
-                <div class="label">Best posture</div>
-                <h3>Warm boundary</h3>
-                <p>Stay present, but don't accept the accusation or chase reassurance.</p>
-              </div>
-              <div class="typing outgoing demo-step" data-step="typing" aria-hidden="true"><i></i><i></i><i></i></div>
-              <div class="bubble outgoing demo-step" data-step="reply">I want to understand you. I'm not okay turning this into blame. If something hurt, I'm here for that.</div>
+        <div class="demo-panel reveal is-visible" id="demo" aria-labelledby="demo-title">
+          <div class="eyebrow">Free sample demo</div>
+          <h2 id="demo-title">Take a breath. Try a reply.</h2>
+          <p class="small-note" id="demo-privacy">Your message stays in this page. It is never saved or sent by the demo. This uses fixed examples, not live AI.</p>
+          <noscript><p>This interactive demo needs JavaScript. You can still read the examples below and open Measured on the App Store.</p></noscript>
+          <form data-reply-demo autocomplete="off">
+            <label for="received-message">Paste the message you received</label>
+            <textarea id="received-message" rows="4" maxlength="3000" placeholder="The message you’re not sure how to answer…" aria-describedby="demo-privacy" spellcheck="false" autocomplete="off"></textarea>
+            <div class="demo-tools">
+              <button type="button" class="text-button" data-use-example>Use an example</button>
+              <button type="button" class="text-button" data-clear-demo>Clear message</button>
+            </div>
+            <label for="reply-intent">What do you want to achieve?</label>
+            <select id="reply-intent">
+              <option value="de-escalate">De-escalate</option>
+              <option value="boundary">Set a boundary</option>
+              <option value="firm">Stay firm</option>
+              <option value="professional">Keep it professional</option>
+              <option value="end">End the conversation</option>
+            </select>
+            <button type="submit" class="button primary demo-submit">Show me how Measured would handle this</button>
+          </form>
+          <p id="demo-status" class="small-note" role="status" aria-live="polite"></p>
+          <div id="demo-result" class="sample-result" tabindex="-1" aria-labelledby="result-title" hidden>
+            <h3 id="result-title">Your sample coaching</h3>
+            <p class="small-note">Fixed examples selected by a few keywords and your goal. They may not fit your situation; they cannot establish anyone’s intent.</p>
+            <h4>What may be happening</h4><p data-analysis></p>
+            <h4>Avoid</h4><p data-avoid></p>
+            <h4 data-calm-title>A calm reply</h4><blockquote data-calm></blockquote>
+            <h4 data-firm-title>A firmer reply</h4><blockquote data-firm></blockquote>
+            <div class="result-cta" data-demo-cta>
+              <p><strong>Want Measured to analyse the real context and coach your reply?</strong></p>
+              <a class="button primary" data-app-store data-placement="demo" href="https://apps.apple.com/app/apple-store/id6776645651?pt=121386003&amp;ct=measured_web_01&amp;mt=8">Open Measured on iPhone</a>
             </div>
           </div>
         </div>
@@ -249,46 +275,8 @@
 
       <section id="plans" aria-labelledby="plans-title">
         <div class="section-heading reveal">
-          <h2 id="plans-title">Start free. Upgrade when it matters.</h2>
-          <p>Get coached replies free every week. When you need them without limits — or the full relationship toolkit — Plus and Coach are there. Everything stays private and on-device by default.</p>
-        </div>
-        <div class="plan-grid">
-          <article class="plan-card reveal">
-            <div class="plan-meta">Free</div>
-            <h3>Get started</h3>
-            <div class="plan-price">€0</div>
-            <div class="plan-price-note">No account needed</div>
-            <p>Enough to feel the difference in your next hard conversation.</p>
-            <ul>
-              <li>3 coached replies every week</li>
-              <li>Private, on-device analysis</li>
-              <li>Calm, human reply options</li>
-            </ul>
-          </article>
-          <article class="plan-card featured reveal">
-            <div class="plan-meta">Plus · Most popular</div>
-            <h3>Reply without limits</h3>
-            <div class="plan-price">€9.99<span>/mo</span></div>
-            <div class="plan-price-note">or €79.99/year</div>
-            <p>For anyone navigating an ongoing situation who wants help on tap.</p>
-            <ul>
-              <li>Unlimited coached replies</li>
-              <li>Premium AI coaching quality</li>
-              <li>Saved history across devices</li>
-            </ul>
-          </article>
-          <article class="plan-card reveal">
-            <div class="plan-meta">Coach</div>
-            <h3>The full toolkit</h3>
-            <div class="plan-price">€19.99<span>/mo</span></div>
-            <div class="plan-price-note">or €179.99/year</div>
-            <p>For deeper, recurring dynamics that need real context.</p>
-            <ul>
-              <li>Everything in Plus</li>
-              <li>Relationship briefs &amp; memory</li>
-              <li>WhatsApp text import &amp; voice notes</li>
-            </ul>
-          </article>
+          <h2 id="plans-title">Try Measured on iPhone.</h2>
+          <p>See the current features, availability and any in-app purchase details on the App Store.</p>
         </div>
       </section>
 
@@ -303,8 +291,8 @@
             <p>No. Users manually import a supported text export. Measured does not connect to a WhatsApp account.</p>
           </article>
           <article class="faq-card reveal">
-            <h3>Are voice notes analyzed?</h3>
-            <p>Not in the first release. The initial website and app copy stay honest: text-only export support first.</p>
+            <h3>Are voice notes in WhatsApp exports analyzed?</h3>
+            <p>No. The supported WhatsApp import processes text only.</p>
           </article>
           <article class="faq-card reveal">
             <h3>Is this therapy?</h3>
@@ -315,6 +303,33 @@
             <p>Only when configured, signed in, entitled, and within usage limits. Local analysis remains available as fallback.</p>
           </article>
         </div>
+      </section>
+
+      <section id="reply-guides" aria-labelledby="reply-guides-title">
+        <div class="section-heading"><h2 id="reply-guides-title">Find a starting point for your message.</h2>
+          <p>Read a practical example, then choose your own goal in the sample demo.</p></div>
+        <div class="guide-grid">
+          <a class="guide-link" href="what-should-i-text-back/"><strong>What should I text back?</strong><span>Find words when your mind goes blank.</span></a>
+          <a class="guide-link" href="reply-to-an-ex/"><strong>Reply to an ex</strong><span>Keep practical arrangements separate from old conflict.</span></a>
+          <a class="guide-link" href="reply-to-a-passive-aggressive-text/"><strong>Reply to a passive-aggressive text</strong><span>Clarify the concern without matching the tone.</span></a>
+          <a class="guide-link" href="set-a-boundary-over-text/"><strong>Set a boundary over text</strong><span>Say what you can do and where your limit is.</span></a>
+          <a class="guide-link" href="reply-to-a-rude-coworker/"><strong>Reply to a rude coworker</strong><span>Address the work while staying professional.</span></a>
+          <a class="guide-link" href="articles/index.html"><strong>More communication guides</strong><span>Browse our existing articles.</span></a>
+        </div>
+      </section>
+
+      <section aria-labelledby="website-privacy-title">
+        <h2 id="website-privacy-title">A private place to try the workflow.</h2>
+        <p>The website demo processes your message only in this page. It does not send it to an AI service or save it. Anonymous usage counts cover demo use and App Store clicks, never message text.</p>
+        <p><a href="privacy.html#website-demo">How the website handles data</a></p>
+        <p class="safety-note">If a message involves threats, coercion or fear, safety takes priority over crafting a reply. You do not have to respond. Seek trusted support; contact local emergency services if there is immediate danger.</p>
+        <p class="small-note">Measured provides communication coaching and support. It is not therapy, mental-health treatment, legal advice or emergency support.</p>
+      </section>
+
+      <section class="final-cta" aria-labelledby="final-cta-title">
+        <h2 id="final-cta-title">Bring your next difficult message to Measured.</h2>
+        <p>Choose what you want to achieve and work through your reply on iPhone. See the App Store for current availability and in-app purchase details.</p>
+        <a class="button primary" data-app-store data-placement="bottom" href="https://apps.apple.com/app/apple-store/id6776645651?pt=121386003&amp;ct=measured_web_01&amp;mt=8">Open Measured on iPhone</a>
       </section>
 
       <section class="contact-band reveal" aria-labelledby="contact-title">
