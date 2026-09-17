@@ -230,3 +230,46 @@ test('homepage and five landing pages retain UTMs in site events, not Apple attr
     }
   }
 });
+
+test('four Pinterest creative identifiers reach Umami and remain separate from Apple attribution', () => {
+  const variants = [
+    ['set-a-boundary-over-text/', 'pinterest_boundary_a1'],
+    ['set-a-boundary-over-text/', 'pinterest_boundary_a2'],
+    ['reply-to-a-passive-aggressive-text/', 'pinterest_tone_b1'],
+    ['reply-to-a-passive-aggressive-text/', 'pinterest_tone_b2']
+  ];
+  for (const [page, content] of variants) {
+    const { window: analytics, scripts, sent } = load('mickyjim.github.io', website);
+    const makeLink = (href, appStore) => ({
+      href, dataset: { placement: 'content' }, handlers: {},
+      hasAttribute: key => appStore && key === 'data-app-store',
+      addEventListener(name, fn) { this.handlers[name] = fn; }
+    });
+    const app = makeLink(appleCampaignURL, true);
+    const demo = makeLink('https://mickyjim.github.io/measured-website/index.html#demo', false);
+    const document = {
+      currentScript: { src: 'https://mickyjim.github.io/measured-website/assets/funnel.js' },
+      referrer: '', querySelectorAll: () => [app, demo], querySelector: () => null
+    };
+    const location = new URL(`https://mickyjim.github.io/measured-website/${page}?utm_source=pinterest&utm_medium=organic&utm_campaign=pinterest_org_01&utm_content=${content}`);
+    const window = { MeasuredConfig: { ...configWindow.MeasuredConfig,
+      eventSink: event => analytics.MeasuredAnalytics.track(event) } };
+    vm.runInNewContext(funnelSource, {
+      window, document, location, URL, URLSearchParams, Promise,
+      localStorage: { getItem: () => null, setItem() {}, removeItem() {} },
+      console: { debug() {} }
+    });
+    scripts[0].onload();
+    app.handlers.click();
+    assert.equal(new URL(demo.href).searchParams.get('utm_content'), content);
+    assert.equal(app.href, appleCampaignURL);
+    assert.deepEqual(sent.map(payload => payload.name || 'pageview'),
+      ['pageview', 'landing_view', 'app_store_clicked']);
+    for (const payload of sent.filter(payload => payload.name)) {
+      assert.equal(payload.website, website);
+      assert.equal(payload.data.utm_source, 'pinterest');
+      assert.equal(payload.data.utm_campaign, 'pinterest_org_01');
+      assert.equal(payload.data.utm_content, content);
+    }
+  }
+});
